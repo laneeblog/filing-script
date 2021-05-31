@@ -17,7 +17,7 @@ fs.readdir(`./${target}`, (error, filelist) => {
             });
         }else {
             if(v.startsWith('IMG_E')) {
-                fs.rename(`./${target}/IMG_` + v.substring(5), `./${target}/duplicated/IMG_` + v.substring(5), (error) => {
+                fs.rename(`./${target}/IMG_` + v.substring(5), `./${target}/duplicated/IMG_` + v.substring(5), () => {
                     console.log(`${v} moved to duplicated`);
                 });
             }
