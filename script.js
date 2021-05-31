@@ -24,11 +24,3 @@ fs.readdir(`./${target}`, (error, filelist) => {
         }
     })
 })
-
-
-
-
-
-// fs.rename('./test/test.txt', './test/video/test.txt', (error) => {
-//     console.log("renameError: " + error);
-// });
