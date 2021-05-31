@@ -3,6 +3,10 @@ var process = require('process');
 
 var target = process.argv[2];
 
+!fs.existsSync(`./${target}/video`) && fs.mkdirSync(`./${target}/video`);
+!fs.existsSync(`./${target}/captured`) && fs.mkdirSync(`./${target}/captured`); 
+!fs.existsSync(`./${target}/duplicated`) && fs.mkdirSync(`./${target}/duplicated`);
+
 fs.readdir(`./${target}`, (error, filelist) => {
     error && console.log(error);
 
@@ -17,9 +21,11 @@ fs.readdir(`./${target}`, (error, filelist) => {
             });
         }else {
             if(v.startsWith('IMG_E')) {
-                fs.rename(`./${target}/IMG_` + v.substring(5), `./${target}/duplicated/IMG_` + v.substring(5), (err) => {
-                    err ? console.log(err) : console.log(`${v} moved to duplicated`);
-                });
+                if(fs.existsSync(`./${target}/IMG_` + v.substring(5))) {
+                    fs.rename(`./${target}/IMG_` + v.substring(5), `./${target}/duplicated/IMG_` + v.substring(5), (err) => {
+                        err ? console.log(err) : console.log(`${v} moved to duplicated`);
+                    });
+                }
             }
         }
     })
