@@ -8,17 +8,17 @@ fs.readdir(`./${target}`, (error, filelist) => {
 
     filelist.forEach((v, i) => {
         if(v.endsWith(".mov") || v.endsWith(".mp4")) {
-            fs.rename(`./${target}/` + v, `./${target}/video/` + v, () => {
-                console.log(`${v} moved to video`);
+            fs.rename(`./${target}/` + v, `./${target}/video/` + v, (err) => {
+                err ? console.log(err) : console.log(`${v} moved to video`);
             });
         }else if(v.endsWith(".png") || v.endsWith(".aae")) {
-            fs.rename(`./${target}/` + v, `./${target}/captured/` + v, () => {
-                console.log(`${v} moved to captured`);
+            fs.rename(`./${target}/` + v, `./${target}/captured/` + v, (err) => {
+                err ? console.log(err) : console.log(`${v} moved to captured`);
             });
         }else {
             if(v.startsWith('IMG_E')) {
-                fs.rename(`./${target}/IMG_` + v.substring(5), `./${target}/duplicated/IMG_` + v.substring(5), () => {
-                    console.log(`${v} moved to duplicated`);
+                fs.rename(`./${target}/IMG_` + v.substring(5), `./${target}/duplicated/IMG_` + v.substring(5), (err) => {
+                    err ? console.log(err) : console.log(`${v} moved to duplicated`);
                 });
             }
         }
